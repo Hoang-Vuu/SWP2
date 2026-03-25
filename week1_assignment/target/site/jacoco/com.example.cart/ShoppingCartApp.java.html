@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShoppingCartApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">week1_assignment</a> &gt; <a href="index.source.html" class="el_package">com.example.cart</a> &gt; <span class="el_source">ShoppingCartApp.java</span></div><h1>ShoppingCartApp.java</h1><pre class="source lang-java linenums">package com.example.cart;
+
+import java.util.*;
+
+<span class="nc" id="L5">public class ShoppingCartApp {</span>
+
+    public static void main(String[] args) {
+
+<span class="nc" id="L9">        Scanner sc = new Scanner(System.in);</span>
+<span class="nc" id="L10">        System.out.println(&quot;Select language (1=English, 2=Finnish, 3=Swedish, 4=Japanese): &quot;);</span>
+<span class="nc" id="L11">        int choice = sc.nextInt();</span>
+
+<span class="nc bnc" id="L13" title="All 4 branches missed.">        Locale locale = switch (choice) {</span>
+<span class="nc" id="L14">            case 2 -&gt; new Locale(&quot;fi&quot;, &quot;FI&quot;);</span>
+<span class="nc" id="L15">            case 3 -&gt; new Locale(&quot;sv&quot;, &quot;SE&quot;);</span>
+<span class="nc" id="L16">            case 4 -&gt; new Locale(&quot;ja&quot;, &quot;JP&quot;);</span>
+<span class="nc" id="L17">            default -&gt; new Locale(&quot;en&quot;, &quot;US&quot;);</span>
+        };
+
+<span class="nc" id="L20">        ResourceBundle rb = ResourceBundle.getBundle(&quot;MessagesBundle&quot;, locale);</span>
+<span class="nc" id="L21">        CartCalculator calc = new CartCalculator();</span>
+
+<span class="nc" id="L23">        System.out.println(rb.getString(&quot;enter.items&quot;));</span>
+<span class="nc" id="L24">        int itemCount = sc.nextInt();</span>
+
+<span class="nc" id="L26">        double[] itemTotals = new double[itemCount];</span>
+
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (int i = 0; i &lt; itemCount; i++) {</span>
+<span class="nc" id="L29">            System.out.println(rb.getString(&quot;enter.price&quot;));</span>
+<span class="nc" id="L30">            double price = sc.nextDouble();</span>
+
+<span class="nc" id="L32">            System.out.println(rb.getString(&quot;enter.qty&quot;));</span>
+<span class="nc" id="L33">            int qty = sc.nextInt();</span>
+
+<span class="nc" id="L35">            itemTotals[i] = calc.calculateItemTotal(price, qty);</span>
+        }
+
+<span class="nc" id="L38">        double total = calc.calculateCartTotal(itemTotals);</span>
+
+<span class="nc" id="L40">        System.out.println(rb.getString(&quot;total.cost&quot;) + &quot; &quot; + total);</span>
+<span class="nc" id="L41">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
